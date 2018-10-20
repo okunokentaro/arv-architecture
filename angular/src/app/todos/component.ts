@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { select, Store } from '@ngrx/store';
 
 import { add } from '../shared/models/todo/actions';
-import { States } from '../reducers';
+import { TodosSelectors } from './selectors';
+import { Dispatcher } from '../shared/lib/dispatcher';
 
 @Component({
   selector: 'app-todos',
@@ -12,11 +12,9 @@ import { States } from '../reducers';
 export class TodosComponent {
   message = 'it works';
 
-  constructor(public store: Store<States>) {
-    store.subscribe(v => console.log(v.todo));
-  }
+  constructor(public selectors: TodosSelectors, private dispatcher: Dispatcher) {}
 
   add() {
-    this.store.dispatch({ type: add });
+    this.dispatcher.dispatch({ type: add });
   }
 }
