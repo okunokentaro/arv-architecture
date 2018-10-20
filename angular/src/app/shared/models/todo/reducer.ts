@@ -1,13 +1,16 @@
 import { Action } from '@ngrx/store';
+
 import { add } from './actions';
+import { Todo } from './todo';
+import { todosMock } from '../../../../mocks/todo/todo.mock';
 
 export interface TodoState {
-  todos: Object[];
+  todos: Todo[];
   nextSequentialNumber: number;
 }
 
 const initialState = {
-  todos: [],
+  todos: todosMock,
   nextSequentialNumber: 1,
 };
 

@@ -21,30 +21,12 @@
   </thead>
 
   <tbody>
-    <tr>
-      <td>1</td>
+    <tr *ngFor="let todo of (selectors.todos$ | async)">
+      <td>{{ todo.id }}</td>
       <td><input type="checkbox"></td>
-      <td>米を買う</td>
-      <td>2018-10-20T06:49:20.653Z</td>
-      <td>2018-10-20T06:49:20.653Z</td>
-      <td><button>編集</button></td>
-      <td><button>削除</button></td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td><input type="checkbox"></td>
-      <td>卵を買う</td>
-      <td>2018-10-20T06:50:13.034Z</td>
-      <td>2018-10-20T06:50:13.034Z</td>
-      <td><button>編集</button></td>
-      <td><button>削除</button></td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td><input type="checkbox"></td>
-      <td>長ねぎを買う</td>
-      <td>2018-10-20T06:51:24.521Z</td>
-      <td>2018-10-20T06:51:24.521Z</td>
+      <td>{{ todo.title }}</td>
+      <td>{{ todo.created }}</td>
+      <td>{{ todo.modified }}</td>
       <td><button>編集</button></td>
       <td><button>削除</button></td>
     </tr>
