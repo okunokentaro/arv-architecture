@@ -1,0 +1,35 @@
+{
+  "name": "arv-architecture",
+  "version": "1.0.0",
+  "bugs": {
+    "url": "https://github.com/okunokentaro/arv-architecture/issues"
+  },
+  "devDependencies": {
+    "husky": "^1.1.2",
+    "lint-staged": "^7.3.0",
+    "prettier": "^1.14.3"
+  },
+  "homepage": "https://github.com/okunokentaro/arv-architecture#readme",
+  "keywords": [],
+  "license": "ISC",
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "main": "index.js",
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true,
+    "trailingComma": "all"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/okunokentaro/arv-architecture.git"
+  },
+  "scripts": {
+    "precommit": "lint-staged",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
