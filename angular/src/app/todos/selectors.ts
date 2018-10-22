@@ -4,15 +4,25 @@ import { Observable } from 'rxjs';
 
 import { States } from '../reducers';
 import { TodoState } from '../shared/models/todo/reducer';
-import { Todo } from '../shared/models/todo/todo';
+import { TodoViewModel } from './view-model';
 
 const featureSelector = createFeatureSelector<States, TodoState>('todo');
+
+const activeTodosSelector = createSelector(featureSelector, state => {
+  return state.todos.filter(todo => todo.status === 'active');
+});
 
 @Injectable({ providedIn: 'root' })
 export class TodosSelectors {
   constructor(private store: Store<States>) {}
 
-  get todos$(): Observable<Todo[]> {
-    return this.store.pipe(select(createSelector(featureSelector, state => state.todos)));
+  get todos$(): Observable<TodoViewModel[]> {
+    return this.store.pipe(
+      select(
+        createSelector(activeTodosSelector, todos => {
+          return todos.map(todo => new TodoViewModel(todo));
+        }),
+      ),
+    );
   }
 }

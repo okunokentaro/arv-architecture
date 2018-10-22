@@ -2,8 +2,8 @@
 
 <h2>タスク追加</h2>
 <div>
-  <input type="text">
-  <button (click)="add()">追加</button>
+  <input [(ngModel)]="inputValue" type="text">
+  <button (click)="onClickAdd(inputValue)">追加</button>
 </div>
 
 <h2>タスク一覧</h2>
@@ -22,13 +22,13 @@
 
   <tbody>
     <tr *ngFor="let todo of (selectors.todos$ | async)">
-      <td>{{ todo.id }}</td>
+      <td>{{ todo.idStr }}</td>
       <td><input type="checkbox"></td>
       <td>{{ todo.title }}</td>
       <td>{{ todo.created }}</td>
       <td>{{ todo.modified }}</td>
       <td><button>編集</button></td>
-      <td><button>削除</button></td>
+      <td><button (click)="onClickRemove(todo.id)">削除</button></td>
     </tr>
   </tbody>
 </table>

@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-
-import { add } from '../shared/models/todo/actions';
 import { TodosSelectors } from './selectors';
-import { Dispatcher } from '../shared/lib/dispatcher';
+import { TodosDispatcher } from './dispatcher';
 
 @Component({
   selector: 'app-todos',
@@ -10,11 +8,16 @@ import { Dispatcher } from '../shared/lib/dispatcher';
   styleUrls: ['./component.scss'],
 })
 export class TodosComponent {
-  message = 'it works';
+  inputValue = '';
 
-  constructor(public selectors: TodosSelectors, private dispatcher: Dispatcher) {}
+  constructor(public selectors: TodosSelectors, private dispatcher: TodosDispatcher) {}
 
-  add() {
-    this.dispatcher.dispatch({ type: add });
+  onClickAdd(title: string) {
+    this.dispatcher.add(title);
+    this.inputValue = '';
+  }
+
+  onClickRemove(id: number) {
+    this.dispatcher.remove(id);
   }
 }

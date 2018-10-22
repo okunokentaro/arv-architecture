@@ -23,3 +23,6 @@ export const todosMock = [
     modified: 1540018284521,
   },
 ] as Todo[];
+
+export const nextSequentialNumberMock =
+  todosMock.map(v => v).sort((a, b) => a.id - b.id)[todosMock.length - 1].id + 1;

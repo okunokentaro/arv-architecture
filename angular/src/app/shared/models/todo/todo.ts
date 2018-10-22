@@ -1,4 +1,4 @@
-type Status = 'active' | 'done' | 'archived';
+type Status = 'active' | 'done' | 'archived' | 'removed';
 
 export interface Todo {
   id: number;
