@@ -1,7 +1,15 @@
-import { add, AddAction, remove, RemoveAction, TodoAction } from './actions';
+import { ActionReducer } from '@ngrx/store';
+
+import {
+  add,
+  AddAction,
+  doneInitialFetch,
+  DoneInitialFetchAction,
+  remove,
+  RemoveAction,
+  TodoAction,
+} from './actions';
 import { Todo } from './todo';
-import { nextSequentialNumberMock, todosMock } from '../../../../mocks/todo/todo.mock';
-import { ActionReducer, ActionReducerMap } from '@ngrx/store';
 
 export interface TodoState {
   todos: Todo[];
@@ -9,9 +17,16 @@ export interface TodoState {
 }
 
 const initialState = {
-  todos: todosMock,
-  nextSequentialNumber: nextSequentialNumberMock,
+  todos: [],
+  nextSequentialNumber: 0,
 } as TodoState;
+
+const doneInitialFetchReducer = (state: TodoState, action: DoneInitialFetchAction): TodoState => {
+  return {
+    todos: action.payload.todos,
+    nextSequentialNumber: action.payload.nextSequentialNumber,
+  } as TodoState;
+};
 
 const addReducer = (state: TodoState, action: AddAction): TodoState => {
   const todos = state.todos.concat([
@@ -45,6 +60,8 @@ const removeReducer = (state: TodoState, action: RemoveAction): TodoState => {
 
 export const todoReducer = ((state: TodoState = initialState, action: TodoAction): TodoState => {
   switch (action.type) {
+    case doneInitialFetch:
+      return doneInitialFetchReducer(state, action);
     case add:
       return addReducer(state, action);
     case remove:

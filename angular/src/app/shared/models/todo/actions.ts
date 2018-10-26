@@ -1,7 +1,14 @@
 import { Action } from '@ngrx/store';
+import { Todo } from './todo';
 
+export const doneInitialFetch = 'todo.doneInitialFetch';
 export const add = 'todo.add';
 export const remove = 'todo.remove';
+
+export interface DoneInitialFetchAction extends Action {
+  type: typeof doneInitialFetch;
+  payload: { todos: Todo[]; nextSequentialNumber: number };
+}
 
 export interface AddAction extends Action {
   type: typeof add;
@@ -13,4 +20,4 @@ export interface RemoveAction extends Action {
   payload: { id: number };
 }
 
-export type TodoAction = AddAction | RemoveAction;
+export type TodoAction = DoneInitialFetchAction | AddAction | RemoveAction;
